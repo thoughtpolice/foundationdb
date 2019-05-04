@@ -119,6 +119,11 @@ else()
   else()
     add_compile_options(-Werror)
   endif()
+  if (CLANG)
+    # aseipp: NixOS hack
+    add_compile_options(-Wno-unused-command-line-argument)
+    add_link_options(-Wno-unused-command-line-argument)
+  endif()
   add_compile_options($<$<BOOL:${GCC}>:-Wno-pragmas>)
   add_compile_options(-Wno-error=format
     -Wunused-variable
